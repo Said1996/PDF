@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -29,7 +31,12 @@ namespace Ui.Views
             InitializeComponent();
         }
 
-        
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected void NotifyPropertyChanged([CallerMemberName] string name = "")
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        }
+
 
         private bool _twoPageView;
         public bool TwoPageView
@@ -45,6 +52,43 @@ namespace Ui.Views
             set { _continuousScroll = value; }
         }
 
+        public uint NumberOfPages
+        {
+            get
+            {
+                return (uint)GetValue(NumberOfPagesProperty);
+            }
+            set
+            {
+                SetValue(NumberOfPagesProperty, value);
+            }
+        }
+
+        public static readonly DependencyProperty NumberOfPagesProperty =
+            DependencyProperty.Register(
+                "NumberOfPages",
+                typeof(uint),
+                typeof(PdfUserControl),
+                new PropertyMetadata(default(uint), OnItemsPropertyChanged));
+
+        private static void OnItemsPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            PdfUserControl pdfUserControl = d as PdfUserControl;
+            pdfUserControl.NumberOfPages = (uint)e.NewValue;
+        }
+
+        //private uint _numbersOfPages;
+        //public uint NumberOfPages
+        //{
+        //    get { return _numbersOfPages; }
+        //    set
+        //    { 
+        //        _numbersOfPages = value;
+        //        NotifyPropertyChanged();
+
+        //    }
+        //}
+
 
 
         private string _path;
@@ -55,8 +99,8 @@ namespace Ui.Views
         }
 
 
-        private string _index;
-        public string Index
+        private uint _index;
+        public uint Index
         {
             get { return _index; }
             set 
@@ -67,9 +111,13 @@ namespace Ui.Views
         }
 
         async void GetPdfFileReady()
-        {   if(PdfFile == null)
+        {   
+            if(PdfFile == null)
+            {
                 PdfFile = await GetPdfFile(Path);
-            Picture();
+                NumberOfPages = PdfFile.PageCount;
+            }         
+            SendPicToView();
         }
 
         PdfDocument PdfFile { get; set; }
@@ -82,11 +130,11 @@ namespace Ui.Views
             return pdfFile;
         }
 
-        async void Picture()
+        async void SendPicToView()
         {
             using (var page = PdfFile.GetPage(Convert.ToUInt32(Index)))
             {
-                BitmapImage bitmapImage = await PageToBitmapAsync(page);
+                BitmapImage bitmapImage = await PageToBitmapAsync(page);  
                 PdfPage.SetValue(Image.SourceProperty, bitmapImage);
                 bitmapImage.Freeze();
             }
@@ -109,5 +157,7 @@ namespace Ui.Views
 
             return image;
         }
+
+        
     }
 }

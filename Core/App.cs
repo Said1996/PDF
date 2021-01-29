@@ -11,6 +11,9 @@ namespace Core
         public override void Initialize()
         {
             RegisterAppStart<MainViewModel>();
+            
         }
+
+                
     }
 }

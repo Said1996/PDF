@@ -1,4 +1,5 @@
 ﻿using MvvmCross.Platforms.Wpf.Views;
+using System.Windows.Input;
 
 namespace Ui
 {
@@ -11,5 +12,7 @@ namespace Ui
         {
             InitializeComponent();
         }
+
+        
     }
 }

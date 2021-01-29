@@ -23,5 +23,35 @@ namespace Ui.Views
         {
             InitializeComponent();
         }
+
+        private void Minimize(object sender, RoutedEventArgs e)
+        {
+            Application.Current.MainWindow.WindowState = WindowState.Minimized;
+            
+        }
+
+        private void Maximize(object sender, RoutedEventArgs e)
+        {
+            if (Application.Current.MainWindow.WindowState == WindowState.Normal)
+                Application.Current.MainWindow.WindowState = WindowState.Maximized;
+            else
+                Application.Current.MainWindow.WindowState = WindowState.Normal;
+        }
+
+        private void Close(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
+
+        private void ScrollWithMouse(object sender, MouseEventArgs e)
+        {
+            double Yunit = (PdfViewer.ActualHeight - ViewerScroll.ActualHeight) / ViewerScroll.ActualHeight;
+            ViewerScroll.ScrollToVerticalOffset(Mouse.GetPosition(Application.Current.MainWindow).Y * Yunit);
+
+            double XUnit = (PdfViewer.ActualWidth - ViewerScroll.ActualWidth) / ViewerScroll.ActualWidth;
+            ViewerScroll.ScrollToHorizontalOffset(Mouse.GetPosition(Application.Current.MainWindow).X * XUnit);
+        }
+
+
     }
 }
