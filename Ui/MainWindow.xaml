@@ -6,13 +6,15 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
    
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Ui" ResizeMode="CanResize"
-        mc:Ignorable="d" WindowStyle="None" AllowsTransparency="True"
+        xmlns:local="clr-namespace:Ui" 
+        mc:Ignorable="d" 
         Title="MainWindow"  Height="450" Width="800" >
-    <WindowChrome.WindowChrome >
-        <WindowChrome CaptionHeight="0" />
-
-
+    <WindowChrome.WindowChrome>
+        <WindowChrome CaptionHeight="5"
+            CornerRadius="2"
+            GlassFrameThickness="0"
+            NonClientFrameEdges="None"
+            ResizeBorderThickness="3"/>
     </WindowChrome.WindowChrome>
     
     <Grid>

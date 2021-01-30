@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -24,6 +25,8 @@ namespace Ui.Views
             InitializeComponent();
         }
 
+        bool CanScroll = true;
+
         private void Minimize(object sender, RoutedEventArgs e)
         {
             Application.Current.MainWindow.WindowState = WindowState.Minimized;
@@ -45,13 +48,66 @@ namespace Ui.Views
 
         private void ScrollWithMouse(object sender, MouseEventArgs e)
         {
-            double Yunit = (PdfViewer.ActualHeight - ViewerScroll.ActualHeight) / ViewerScroll.ActualHeight;
+            double Yunit = (PdfViewer.ActualHeight - ViewerScroll.ActualHeight) / MainGrid.ActualHeight;
             ViewerScroll.ScrollToVerticalOffset(Mouse.GetPosition(Application.Current.MainWindow).Y * Yunit);
 
-            double XUnit = (PdfViewer.ActualWidth - ViewerScroll.ActualWidth) / ViewerScroll.ActualWidth;
+            double XUnit = (PdfViewer.ActualWidth - ViewerScroll.ActualWidth) / MainGrid.ActualWidth;
             ViewerScroll.ScrollToHorizontalOffset(Mouse.GetPosition(Application.Current.MainWindow).X * XUnit);
         }
 
+        
 
+        private void PdfViewer_MouseLeftButtonDown_DragWindow(object sender, MouseButtonEventArgs e)
+        {
+            if (Mouse.LeftButton == MouseButtonState.Pressed)
+                Application.Current.MainWindow.DragMove();
+        }
+
+        private void PdfViewer_MouseRightButtonDown_AllowScroll(object sender, MouseButtonEventArgs e)
+        {
+            if (CanScroll == true)
+            {
+                this.PreviewMouseMove -= ScrollWithMouse;
+                CanScroll = false;
+            }
+            else
+            {
+                this.PreviewMouseMove += ScrollWithMouse;
+                CanScroll = true;
+            }    
+        }
+
+        private void MvxWpfView_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+
+        }
+
+        private async void Zoom(object sender, MouseWheelEventArgs e)
+        {
+            e.Handled = true;
+            if (e.Delta > 0)
+            {
+                for (int i = 0; i < 15; i++)
+                {
+                    await Task.Delay(1);
+                    PdfViewer.Width += 2;
+                }
+
+            }
+            else if (e.Delta < 0)
+            {
+                for (int i = 0; i < 15; i++)
+                {
+                    if (PdfViewer.Width >= 2)
+                    {
+                        await Task.Delay(1);
+                        PdfViewer.Width -= 2;
+                    }
+                }
+            }
+
+        }
+
+        
     }
 }

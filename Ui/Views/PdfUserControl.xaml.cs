@@ -77,20 +77,6 @@ namespace Ui.Views
             pdfUserControl.NumberOfPages = (uint)e.NewValue;
         }
 
-        //private uint _numbersOfPages;
-        //public uint NumberOfPages
-        //{
-        //    get { return _numbersOfPages; }
-        //    set
-        //    { 
-        //        _numbersOfPages = value;
-        //        NotifyPropertyChanged();
-
-        //    }
-        //}
-
-
-
         private string _path;
         public string Path
         {
