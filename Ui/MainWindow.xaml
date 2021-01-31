@@ -10,11 +10,9 @@
         mc:Ignorable="d" 
         Title="MainWindow"  Height="450" Width="800" >
     <WindowChrome.WindowChrome>
-        <WindowChrome CaptionHeight="5"
+        <WindowChrome CaptionHeight="0"
             CornerRadius="2"
-            GlassFrameThickness="0"
-            NonClientFrameEdges="None"
-            ResizeBorderThickness="3"/>
+            />
     </WindowChrome.WindowChrome>
     
     <Grid>

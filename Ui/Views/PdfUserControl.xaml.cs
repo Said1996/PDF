@@ -131,7 +131,7 @@ namespace Ui.Views
             BitmapImage image = new BitmapImage();
             using (var stream = new InMemoryRandomAccessStream())
             {
-                var options = new PdfPageRenderOptions {  };
+                var options = new PdfPageRenderOptions { DestinationWidth = 2000 };
                 await page.RenderToStreamAsync(stream, options);
                 image.BeginInit();
                 image.StreamSource = stream.AsStream();

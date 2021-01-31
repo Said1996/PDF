@@ -79,7 +79,43 @@ namespace Ui.Views
 
         private void MvxWpfView_PreviewKeyDown(object sender, KeyEventArgs e)
         {
+            if (e.Key == Key.W)
+            { 
+                
+                ViewerScroll.ScrollToVerticalOffset(ViewerScroll.VerticalOffset - ViewerScroll.ActualHeight);
+            }
+            else if (e.Key == Key.S)
+            {
+                ViewerScroll.ScrollToVerticalOffset(ViewerScroll.VerticalOffset + ViewerScroll.ActualHeight);
+            }
+            else if(e.Key == Key.D)
+            {
+                ViewerScroll.ScrollToHorizontalOffset(ViewerScroll.HorizontalOffset + ViewerScroll.ActualWidth);
+            }
+            else if (e.Key == Key.A)
+            {
+                ViewerScroll.ScrollToHorizontalOffset(ViewerScroll.HorizontalOffset - ViewerScroll.ActualWidth);
+            }
 
+            else if (e.Key == Key.Escape)
+            {
+                PdfViewer.Width = MainGrid.ColumnDefinitions[1].ActualWidth * 2 + 200;
+                MainGrid.ColumnDefinitions[0].Width = new GridLength(200);
+                MainGrid.ColumnDefinitions[2].Width = new GridLength(200);
+            }
+            else if (e.Key == Key.Z)
+            {
+                PdfViewer.Width = ViewerScroll.ActualWidth;
+            }
+            else if(e.Key == Key.X)
+            {
+                PdfViewer.Width = (ViewerScroll.ActualHeight / PdfViewer.ActualHeight) * PdfViewer.ActualWidth;
+            }
+            else if(e.Key == Key.C)
+            {
+                MainGrid.ColumnDefinitions[0].Width = new GridLength(0);
+                MainGrid.ColumnDefinitions[2].Width = new GridLength(0);
+            }
         }
 
         private async void Zoom(object sender, MouseWheelEventArgs e)
@@ -90,9 +126,8 @@ namespace Ui.Views
                 for (int i = 0; i < 15; i++)
                 {
                     await Task.Delay(1);
-                    PdfViewer.Width += 2;
+                    PdfViewer.Width = PdfViewer.ActualWidth + 2;
                 }
-
             }
             else if (e.Delta < 0)
             {
@@ -105,9 +140,6 @@ namespace Ui.Views
                     }
                 }
             }
-
-        }
-
-        
+        }    
     }
 }
