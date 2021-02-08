@@ -22,5 +22,18 @@ namespace Ui.Views
         {
             InitializeComponent();
         }
+
+        private BitmapImage _cover;
+
+        public BitmapImage Cover
+        {
+            get { return _cover; }
+            set 
+            { 
+                _cover = value; 
+                
+            }
+        }
+
     }
 }
