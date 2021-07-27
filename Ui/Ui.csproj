@@ -11,6 +11,8 @@
     <PackageReference Include="Microsoft.Windows.SDK.Contracts" Version="10.0.19041.1" />
     <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.31" />
     <PackageReference Include="MvvmCross.Platforms.Wpf" Version="7.1.2" />
+    <PackageReference Include="MvvmCross.Plugin.FieldBinding" Version="7.1.2" />
+    <PackageReference Include="MvvmCross.Plugin.MethodBinding" Version="7.1.2" />
   </ItemGroup>
 
   <ItemGroup>
