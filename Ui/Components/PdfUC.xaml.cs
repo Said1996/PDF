@@ -23,10 +23,10 @@ namespace Ui.Views
     /// <summary>
     /// Interaction logic for PdfUserControl.xaml
     /// </summary>
-    public partial class PdfUserControl : UserControl
+    public partial class PdfUC : UserControl
     {
 
-        public PdfUserControl()
+        public PdfUC()
         {
             InitializeComponent();
         }
@@ -68,12 +68,12 @@ namespace Ui.Views
             DependencyProperty.Register(
                 "NumberOfPages",
                 typeof(uint),
-                typeof(PdfUserControl),
+                typeof(PdfUC),
                 new PropertyMetadata(default(uint), OnItemsPropertyChanged));
 
         private static void OnItemsPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            PdfUserControl pdfUserControl = d as PdfUserControl;
+            PdfUC pdfUserControl = d as PdfUC;
             pdfUserControl.NumberOfPages = (uint)e.NewValue;
         }
 

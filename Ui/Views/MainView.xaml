@@ -37,7 +37,7 @@
         </UniformGrid>
 
             <ScrollViewer x:Name="ViewerScroll" PreviewMouseWheel="Zoom" Grid.Column="1" VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Hidden">
-            <local:PdfUserControl x:Name="PdfViewer" Width="400" Path="C:\Users\Saeed\Downloads\مكتبة نور ليلة في بيت النبي.pdf"  mvx:Bi.nd="Index PageIndex;NumberOfPages FinalPage" MouseLeftButtonDown="PdfViewer_MouseLeftButtonDown_DragWindow" MouseRightButtonDown="PdfViewer_MouseRightButtonDown_AllowScroll" />
+            <local:PdfUC x:Name="PdfViewer" Width="400" Path="C:\Users\Saeed\Downloads\مكتبة نور ليلة في بيت النبي.pdf"  mvx:Bi.nd="Index PageIndex;NumberOfPages FinalPage" MouseLeftButtonDown="PdfViewer_MouseLeftButtonDown_DragWindow" MouseRightButtonDown="PdfViewer_MouseRightButtonDown_AllowScroll" />
         </ScrollViewer>
 
         <Grid Grid.Column="2">

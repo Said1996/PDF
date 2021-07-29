@@ -16,24 +16,26 @@ namespace Ui.Views
     /// <summary>
     /// Interaction logic for BookUserControl1.xaml
     /// </summary>
-    public partial class BookUserControl1 : UserControl
+    public partial class BookUC : UserControl
     {
-        public BookUserControl1()
+        public BookUC()
         {
             InitializeComponent();
         }
 
-        private BitmapImage _cover;
 
-        public BitmapImage Cover
+
+        public Book StoredBook
         {
-            get { return _cover; }
-            set 
-            { 
-                _cover = value; 
-                
-            }
+            get { return (Book)GetValue(StoredBookProperty); }
+            set { SetValue(StoredBookProperty, value); }
         }
+
+        // Using a DependencyProperty as the backing store for StoredBook.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty StoredBookProperty =
+            DependencyProperty.Register("StoredBook", typeof(Book), typeof(ownerclass), new PropertyMetadata(0));
+
+
 
     }
 }
