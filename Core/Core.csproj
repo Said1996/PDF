@@ -6,8 +6,10 @@
 
   <ItemGroup>
     <PackageReference Include="MvvmCross" Version="7.1.2" />
-    <PackageReference Include="MvvmCross.Plugin.FieldBinding" Version="7.1.2" />
-    <PackageReference Include="MvvmCross.Plugin.MethodBinding" Version="7.1.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Models\" />
   </ItemGroup>
 
 </Project>

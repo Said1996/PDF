@@ -9,7 +9,11 @@
         xmlns:local="clr-namespace:Ui" 
         mc:Ignorable="d" 
         Title="MainWindow"  Height="450" Width="800" >
-    
+    <WindowChrome.WindowChrome>
+        <WindowChrome CaptionHeight="0"
+            CornerRadius="2"
+            />
+    </WindowChrome.WindowChrome>
     
     <Grid>
        

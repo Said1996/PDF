@@ -11,7 +11,7 @@ namespace Ui
     {
         protected override void RegisterSetup()
         {
-            this.RegisterSetupType<Setup>();
+            this.RegisterSetupType<MvxWpfSetup<Core.App>>();
             
         }
 
